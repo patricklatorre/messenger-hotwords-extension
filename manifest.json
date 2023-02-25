@@ -1,0 +1,33 @@
+{
+    "manifest_version": 3,
+    "name": "Messenger Hotwords",
+    "description": "Keyword tally for Messenger",
+    "version": "0.1.0",
+    "icons": {
+      "16": "icons/16.png",
+      "32": "icons/32.png"
+    },
+    "background": {
+      "type": "module",
+      "service_worker": "service-worker.js"
+    },
+    "action": {
+      "default_popup": "popup/popup.html",
+      "default_icon": {
+        "16": "icons/16.png",
+        "32": "icons/32.png"
+      }
+    },
+    "content_scripts": [
+      {
+        "matches": ["*://*.messenger.com/t/*"],
+        "js": ["services/crawler.js"],
+        "css": ["services/crawler.css"]
+      }
+    ],
+    "permissions": [
+        "scripting",
+        "activeTab",
+        "webNavigation"
+    ]
+  }
