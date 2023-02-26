@@ -26,8 +26,12 @@
       }
     ],
     "permissions": [
-        "scripting",
         "activeTab",
+        "scripting",
+        "tabs",
         "webNavigation"
+    ],
+    "host_permissions": [
+      "*://*.messenger.com/t/*"
     ]
   }

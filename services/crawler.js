@@ -1,10 +1,9 @@
-const MESSAGE_SELECTOR      = '.x1fc57z9';
-const CHAT_HEADER_SELECTOR  = '.x1u998qt.x1vjfegm';
-const KEYWORD_BOX_SELECTOR  = '#keywordBox';
+startRepeatedScrape();
 
 
-// Scrape keywords every 4s
-setInterval(tallyKeywords, 4000);
+function startRepeatedScrape() {
+    setInterval(tallyKeywords, 4000);
+}
 
 
 async function tallyKeywords() {
@@ -58,13 +57,13 @@ async function tallyKeywords() {
 function updateKeywordBox(keywordBoxEl, tally) {
     keywordBoxEl.textContent = '';
 
-    let entries = [];
+    let tallyRecords = [];
 
     for (let [word, count] of Object.entries(tally)) {
-        entries.push({ word, count });
+        tallyRecords.push({ word, count });
     }
 
-    entries.sort((a, b) => {
+    tallyRecords.sort((a, b) => {
         if (a.count >= b.count) {
             return -1;
         } else {
@@ -72,8 +71,8 @@ function updateKeywordBox(keywordBoxEl, tally) {
         }
     });
 
-    
-    for (const {word, count} of entries) {
+
+    for (const {word, count} of tallyRecords) {
         const keywordEl = document.createElement('div');
         keywordEl.className = 'keyword';
 
@@ -106,15 +105,18 @@ function createKeywordBox() {
 
 
 function getMessageEls() {
+    const MESSAGE_SELECTOR = '.x1fc57z9';
     return document.querySelectorAll(MESSAGE_SELECTOR);
 }
 
 
 function getChatHeaderEl() {
+    const CHAT_HEADER_SELECTOR = '.x1u998qt.x1vjfegm';
     return document.querySelector(CHAT_HEADER_SELECTOR);
 }
 
 
 function getKeywordBoxEl() {
+    const KEYWORD_BOX_SELECTOR = '#keywordBox';
     return document.querySelector(KEYWORD_BOX_SELECTOR);
 }
